@@ -296,9 +296,8 @@ export default function Home() {
             {images.map((img, index) => (
               <div
                 key={index}
-                className={`${styles.carouselItem} ${
-                  index === currentSlide ? styles.carouselItemActive : ""
-                }`}
+                className={`${styles.carouselItem} ${index === currentSlide ? styles.carouselItemActive : ""
+                  }`}
               >
                 <Image
                   src={img}
@@ -315,9 +314,8 @@ export default function Home() {
             {images.map((_, index) => (
               <span
                 key={index}
-                className={`${styles.dot} ${
-                  index === currentSlide ? styles.dotActive : ""
-                }`}
+                className={`${styles.dot} ${index === currentSlide ? styles.dotActive : ""
+                  }`}
                 onClick={() => setCurrentSlide(index)}
               ></span>
             ))}
@@ -610,18 +608,16 @@ export default function Home() {
         <div className={styles.contactosMain}>
           <div className={styles.contactosContainer}>
             <div className={styles.contactosTexts1}>
-              <p className={styles.contactosText}>Avenida Roberto Ivens, 12</p>
-              <p className={styles.contactosText}>9500-238 PONTA DELGADA</p>
-              <p className={styles.contactosText}>AÇORES</p>
+              <p className={styles.contactosText}>{t("contactos-address1")}</p>
+              <p className={styles.contactosText}>{t("contactos-address2")}</p>
+              <p className={styles.contactosText}>{t("contactos-address3")}</p>
             </div>
             <div className={styles.contactosTexts2}>
-              <p className={styles.contactosText}>+351 296 628 253</p>
+              <p className={styles.contactosText}>{t("contactos-phone")}</p>
               <p style={{ fontSize: 18 }} className={styles.contactosText}>
-                chamada para a rede fixa nacional
+                {t("contactos-phone-desc")}
               </p>
-              <p className={styles.contactosText}>
-                reservas@esquinasteakhouse.pt
-              </p>
+              <p className={styles.contactosText}>{t("contactos-email")}</p>
             </div>
             <div className={styles.socialsImgs}>
               <a
@@ -672,14 +668,10 @@ export default function Home() {
             className={styles.title}
           />
         </div>
-        <br></br>
-        <p className={styles.horarioText}>
-          SEGUNDA A QUINTA: 12h às 23h (COZINHA ATÉ 21H)
-        </p>
-        <p className={styles.horarioText}>
-          SEXTA E SÁBADO: 12h às 00h (COZINHA ATÉ 22H)
-        </p>
-        <p className={styles.horarioText}>DOMINGO: FECHADO</p>
+        <br />
+        <p className={styles.horarioText}>{t("horario-weekday")}</p>
+        <p className={styles.horarioText}>{t("horario-weekend")}</p>
+        <p className={styles.horarioText}>{t("horario-sunday")}</p>
       </div>
 
       <div
@@ -688,12 +680,8 @@ export default function Home() {
         }}
         className={styles.politica}
       >
-        <p className={styles.politicaText1}>
-          POLÍTICA DE PRIVACIDADE | LIVRO DE RECLAMAÇÕES ELETRÓNICO
-        </p>
-        <p className={styles.politicaText2}>
-          © ESQUINA STEAKHOUSE. Todos os direitos reservados.
-        </p>
+        <p className={styles.politicaText1}>{t("politica-privacy")}</p>
+        <p className={styles.politicaText2}>{t("politica-rights")}</p>
       </div>
     </div>
   );
