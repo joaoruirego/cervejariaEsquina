@@ -1,6 +1,6 @@
 "use client";
 import React, { createContext, useState, useContext, useEffect } from "react";
-import { getContentData } from "@/components/getData";
+import { getContentData } from "@/actions/getData";
 
 const LanguageContext = createContext();
 

@@ -1,5 +1,52 @@
 @import url("https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap");
 
+.container {
+  background-color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 15px;
+}
+
+.container h1 {
+  font-family: "Sofia Sans Extra Condensed";
+  letter-spacing: -0.6px;
+  text-align: center;
+  font-size: 42px;
+  margin-bottom: 25px;
+}
+
+.container input {
+  width: 290px;
+  padding: 15px;
+  border: 0;
+  background-color: #222;
+  font-size: 16px;
+  color: #fff;
+  font-family: "Sofia Sans Extra Condensed";
+  border-radius: 5px;
+  outline: none;
+}
+
+.container button {
+  width: 290px;
+  padding: 15px;
+  border: 0;
+  background-color: #000;
+  font-size: 18px;
+  color: #fff;
+  font-family: "Sofia Sans Extra Condensed";
+  border-radius: 5px;
+  margin-top: 5px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.container button:hover {
+  opacity: 0.8;
+}
+
 .loading {
   background-color: #111;
   display: flex;
