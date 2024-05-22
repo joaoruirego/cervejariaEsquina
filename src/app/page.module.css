@@ -79,6 +79,52 @@
   text-transform: uppercase;
 }
 
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Hide non-active slides */
+}
+
+.carouselInner {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carouselItem {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.carouselItemActive {
+  display: block;
+}
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: -60px;
+}
+
+.dot {
+  padding: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #fff;
+}
+
+.dotActive {
+  background: transparent;
+  border: 2px solid #fff;
+}
+
 .carrosel {
   width: 100vw;
   height: 70vh;
@@ -91,11 +137,14 @@
 }
 
 .title {
-  font-family: "Sofia Sans Extra Condensed";
-  font-size: 52px;
-  letter-spacing: -0.4px;
-  text-align: center;
-  text-transform: uppercase;
+  width: 100%;
+  object-fit: contain;
+}
+
+.titleContent {
+  align-self: center;
+  display: block;
+  margin: auto;
 }
 
 .desc {
@@ -205,6 +254,14 @@
 .maturacaoImg3 {
   width: 100%;
   height: auto;
+}
+
+.maturacaoImg4 {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  right: 350px;
+  margin-top: -50px;
 }
 
 /* CORTE */

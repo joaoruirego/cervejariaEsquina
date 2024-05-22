@@ -1,5 +1,9 @@
+"use client";
 import Image from "next/image";
+import Backgroundimage from "next/image";
 import styles from "./page.module.css";
+import { useState, useEffect } from "react";
+
 import logo from "../../public/logoCervejaria.png";
 import fotoGrande from "../../public/SLIDER_INICIO/SLIDER_MEAT_LOVERS.jpg";
 
@@ -12,6 +16,7 @@ import criacaoImg2 from "../../public/FOTOS/CRIACAO_2.jpg";
 import maturacao1 from "../../public/FOTOS/MATURACAO_1.jpg";
 import maturacao2 from "../../public/FOTOS/MATURACAO_2.jpg";
 import maturacao3 from "../../public/FOTOS/MATURACAO_3.jpg";
+import maturacao4 from "../../public/FOTOS/SELO_RAMO_GRANDE.png";
 
 import cortesImg1 from "../../public/FOTOS/CORTE_1.jpg";
 import cortesImg2 from "../../public/FOTOS/CORTE_2.jpg";
@@ -24,13 +29,40 @@ import menuImg4 from "../../public/FOTOS/MENU_4.jpg";
 import menuImg5 from "../../public/FOTOS/MENU_5.jpg";
 import menuImg6 from "../../public/FOTOS/MENU_6.jpg";
 
-import facebook from "../../public/FOTOS/facebook.webp";
-import insta from "../../public/FOTOS/insta.png";
+import facebook from "../../public/FOTOS/facebook_preto.png";
+import insta from "../../public/FOTOS/instagram_preto.png";
 
-import facebookWhite from "../../public/FOTOS/facebookWhite.jpeg";
+import facebookWhite from "../../public/FOTOS/facebook_branco.png";
 import instaWhite from "../../public/FOTOS/instaWhite.webp";
 
+import sobreTitle from "../../public/FOTOS/SOBRE.png";
+import criacaoTitle from "../../public/FOTOS/CRIACAO.png";
+import maturacaoTitle from "../../public/FOTOS/MATURACAO.png";
+import corteTitle from "../../public/FOTOS/CORTE.png";
+import menuTitle from "../../public/FOTOS/MENU.png";
+import contactosTitle from "../../public/FOTOS/CONTACTOS.png";
+import horarioTitle from "../../public/FOTOS/HORARIO.png";
+
+import backgroundPaper from "../../public/FOTOS/backgroundPaper.png";
+
+const images = [
+  "/SLIDER_INICIO/SLIDER_MEAT_LOVERS.jpg",
+  "/SLIDER_INICIO/SLIDER_BIFANA.jpg",
+  "/SLIDER_INICIO/SLIDER_CARNE.jpg",
+  "/SLIDER_INICIO/SLIDER_PREGO.jpg",
+];
+
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className={styles.geral}>
       <nav className={styles.navBar}>
@@ -72,19 +104,50 @@ export default function Home() {
         </div>
       </nav>
 
-      <div className={styles.carrosel}>
-        <Image
-          width={2000}
-          height={2000}
-          src={fotoGrande}
-          alt="Step"
-          className={styles.imagemGrandes}
-        />
-        <button></button>
+      <div className={styles.geral}>
+        <div className={styles.carousel}>
+          <div className={styles.carouselInner}>
+            {images.map((img, index) => (
+              <div
+                key={index}
+                className={`${styles.carouselItem} ${
+                  index === currentSlide ? styles.carouselItemActive : ""
+                }`}
+              >
+                <Image
+                  src={img}
+                  alt={`Slide ${index + 1}`}
+                  width={2000} // Adjust to fit the container size
+                  height={2000} // Adjust to maintain aspect ratio
+                  layout="responsive" // This makes the image responsive
+                />
+              </div>
+            ))}
+          </div>
+          <div className={styles.carouselDots}>
+            {images.map((_, index) => (
+              <span
+                key={index}
+                className={`${styles.dot} ${
+                  index === currentSlide ? styles.dotActive : ""
+                }`}
+                onClick={() => setCurrentSlide(index)}
+              ></span>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className={styles.sobreNos}>
-        <h1 className={styles.title}>Sobre</h1>
+        <div className={styles.titleContent}>
+          <Image
+            alt="Step"
+            width={140}
+            height={70}
+            src={sobreTitle}
+            className={styles.title}
+          />
+        </div>
 
         <p className={styles.desc}>
           Num espaço mítico da cidade de Ponta Delgada, nasceu um novo conceito
@@ -111,17 +174,30 @@ export default function Home() {
             className={styles.sobreImg2}
           />
         </div>
-        <div>
-          <video autoPlay={false} className={styles.sobreVideo}>
+        <a href="" target="_blank">
+          <div className={styles.sobreVideo}>
+            {/* <video autoPlay={false} >
             <source src="/caminho/para/seu/video.mp4" type="video/mp4" />
-          </video>
-        </div>
+          </video> */}
+          </div>
+        </a>
       </div>
 
-      <div className={styles.criacao}>
-        <h1 style={{ color: "#000" }} className={styles.title}>
-          Criação
-        </h1>
+      <div
+        style={{
+          backgroundImage: `url(${backgroundPaper.src})`,
+        }}
+        className={styles.criacao}
+      >
+        <div className={styles.titleContent}>
+          <Image
+            alt="Step"
+            width={140}
+            height={70}
+            src={criacaoTitle}
+            className={styles.title}
+          />
+        </div>
 
         <div className={styles.criacaoContainer}>
           <div className={styles.esqCriacao}>
@@ -149,19 +225,27 @@ export default function Home() {
               alt="Step"
               className={styles.criacaoImg2}
             />
-            {/* <Image
-              src={imgCriacaoRotulo}
-              width={50}
-              height={50}
+            <Image
+              src={maturacao4}
+              width={150}
+              height={150}
               alt="Step"
-              className={styles.criacaoImgRotulo}
-            /> */}
+              className={styles.maturacaoImg4}
+            />
           </div>
         </div>
       </div>
 
       <div className={styles.maturacao}>
-        <h1 className={styles.title}>Maturação</h1>
+        <div className={styles.titleContent}>
+          <Image
+            alt="Step"
+            width={140}
+            height={70}
+            src={maturacaoTitle}
+            className={styles.title}
+          />
+        </div>
         <div className={styles.maturacaoContainer}>
           <div className={styles.maturacaoEsq}>
             <Image
@@ -202,11 +286,21 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={styles.corte}>
-        <h1 style={{ color: "#000" }} className={styles.title}>
-          Corte
-        </h1>
-
+      <div
+        style={{
+          backgroundImage: `url(${backgroundPaper.src})`,
+        }}
+        className={styles.corte}
+      >
+        <div className={styles.titleContent}>
+          <Image
+            alt="Step"
+            width={140}
+            height={70}
+            src={corteTitle}
+            className={styles.title}
+          />
+        </div>
         <div className={styles.cortesImgs}>
           <Image
             src={cortesImg1}
@@ -241,7 +335,15 @@ export default function Home() {
       </div>
 
       <div className={styles.menu}>
-        <h1 className={styles.title}>Menu</h1>
+        <div className={styles.titleContent}>
+          <Image
+            alt="Step"
+            width={140}
+            height={70}
+            src={menuTitle}
+            className={styles.title}
+          />
+        </div>
 
         <div className={styles.Imgs}>
           <Image
@@ -313,10 +415,22 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={styles.contactos}>
-        <h1 style={{ color: "#000" }} className={styles.title}>
-          Contactos
-        </h1>
+      <div
+        style={{
+          backgroundImage: `url(${backgroundPaper.src})`,
+        }}
+        className={styles.contactos}
+      >
+        <div className={styles.titleContent}>
+          <Image
+            alt="Step"
+            width={140}
+            height={70}
+            src={contactosTitle}
+            className={styles.title}
+            style={{ width: 180, height: 80, display: "block", margin: "auto" }}
+          />
+        </div>
 
         <div className={styles.contactosMain}>
           <div className={styles.contactosContainer}>
@@ -364,7 +478,15 @@ export default function Home() {
       </div>
 
       <div className={styles.horario}>
-        <h1 className={styles.title}>Horário</h1>
+        <div className={styles.titleContent}>
+          <Image
+            alt="Step"
+            width={140}
+            height={70}
+            src={horarioTitle}
+            className={styles.title}
+          />
+        </div>
         <br></br>
         <p className={styles.horarioText}>
           SEGUNDA A QUINTA: 12h às 23h (COZINHA ATÉ 21H)
@@ -375,7 +497,12 @@ export default function Home() {
         <p className={styles.horarioText}>DOMINGO: FECHADO</p>
       </div>
 
-      <div style={{ paddingBottom: 35 }} className={styles.politica}>
+      <div
+        style={{
+          paddingBottom: 35,
+        }}
+        className={styles.politica}
+      >
         <p className={styles.politicaText1}>
           POLÍTICA DE PRIVACIDADE | LIVRO DE RECLAMAÇÕES ELETRÓNICO
         </p>
