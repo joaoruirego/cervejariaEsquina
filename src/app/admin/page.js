@@ -184,7 +184,14 @@ const AdminPage = () => {
     </div>
   );
 
-  if (loading) return <h1>loading</h1>;
+  if (loading)
+    return (
+      <div className={styles.loading}>
+        <h1 style={{ display: "flex", justifyContent: "center" }}>
+          A carregar conteúdos...
+        </h1>
+      </div>
+    );
 
   return (
     <div className={styles.main}>

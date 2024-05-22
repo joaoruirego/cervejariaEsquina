@@ -55,7 +55,13 @@ export default function Home() {
   }, [closeNav]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className={styles.loading}>
+        <h1 style={{ display: "flex", justifyContent: "center" }}>
+          A carregar conteúdos...
+        </h1>
+      </div>
+    );
   }
 
   return (
@@ -305,11 +311,11 @@ export default function Home() {
             />
           </div>
         </div>
-        <a href={content.sobre_video_link} target="_blank">
+        <a /* href={content.sobre_video_link} */ target="_blank">
           <div className={styles.sobreVideo}>
-            {/* <video autoPlay={false} >
-            <source src="/caminho/para/seu/video.mp4" type="video/mp4" />
-          </video> */}
+            <video controls>
+              <source src={content.sobre_video_link} type="video/mp4" />
+            </video>
           </div>
         </a>
       </div>

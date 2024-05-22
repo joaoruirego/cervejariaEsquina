@@ -1,5 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap");
 
+.loading {
+  background-color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loading h1 {
+  font-family: "Sofia Sans Extra Condensed";
+  letter-spacing: -1.2px;
+  text-align: center;
+}
+
 .main {
   background-color: #111;
   padding-left: 200px;
