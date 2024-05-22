@@ -41,12 +41,18 @@
   align-items: center;
   list-style: none;
   gap: 25px;
+  cursor: pointer;
 }
 
 .topicosCentrais li {
   font-family: "Sofia Sans Extra Condensed";
   font-size: 25px;
   text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+.topicosCentrais li:hover {
+  opacity: 0.5;
 }
 
 .topicosDireita {
@@ -77,6 +83,12 @@
   margin-bottom: 15px;
   margin-top: 5px;
   text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.reservarBtn:hover {
+  opacity: 0.5;
 }
 
 .carousel {
@@ -352,6 +364,12 @@
 .socialImg {
   width: 30px;
   height: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.socialImg:hover {
+  opacity: 0.5;
 }
 
 /* HORARIO */

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Backgroundimage from "next/image";
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import logo from "../../public/logoCervejaria.png";
 import fotoGrande from "../../public/SLIDER_INICIO/SLIDER_MEAT_LOVERS.jpg";
@@ -54,6 +54,16 @@ const images = [
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const sobreTitleRef = useRef(null);
+  const menuTitleRef = useRef(null);
+  const contactosTitleRef = useRef(null);
+
+  const scrollToRef = (ref) => {
+    window.scrollTo({
+      top: ref.current.offsetTop - 25,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -74,32 +84,47 @@ export default function Home() {
           className={styles.logo}
         />
         <ul className={styles.topicosCentrais}>
-          <li>Sobre</li>
-          <li>Menu</li>
-          <li>Contactos</li>
+          <li onClick={() => scrollToRef(sobreTitleRef)}>Sobre</li>
+          <li onClick={() => scrollToRef(menuTitleRef)}>Menu</li>
+          <li onClick={() => scrollToRef(contactosTitleRef)}>Contactos</li>
         </ul>
         <div className={styles.topicosDireita}>
           <div className={styles.socialsImgs}>
-            <Image
-              src={facebookWhite}
-              width={35}
-              height={35}
-              alt="Step"
-              className={styles.socialImg}
-            />
-            <Image
-              src={instaWhite}
-              width={35}
-              height={35}
-              alt="Step"
-              className={styles.socialImg}
-            />
+            <a
+              target="_blank"
+              href="https://www.facebook.com/cervejariaesquina"
+            >
+              <Image
+                src={facebookWhite}
+                width={35}
+                height={35}
+                alt="Step"
+                className={styles.socialImg}
+              />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.facebook.com/cervejariaesquina"
+            >
+              <Image
+                src={instaWhite}
+                width={35}
+                height={35}
+                alt="Step"
+                className={styles.socialImg}
+              />
+            </a>
           </div>
           <div className={styles.navBarDireita}>
             <div className={styles.linguas}>
               <li>PT</li>|<li>EN</li>
             </div>
-            <button className={styles.reservarBtn}>Reservar</button>
+            <button
+              onClick={() => scrollToRef(contactosTitleRef)}
+              className={styles.reservarBtn}
+            >
+              Reservar
+            </button>
           </div>
         </div>
       </nav>
@@ -138,7 +163,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={styles.sobreNos}>
+      <div ref={sobreTitleRef} className={styles.sobreNos}>
         <div className={styles.titleContent}>
           <Image
             alt="Step"
@@ -334,7 +359,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className={styles.menu}>
+      <div ref={menuTitleRef} className={styles.menu}>
         <div className={styles.titleContent}>
           <Image
             alt="Step"
@@ -419,6 +444,7 @@ export default function Home() {
         style={{
           backgroundImage: `url(${backgroundPaper.src})`,
         }}
+        ref={contactosTitleRef}
         className={styles.contactos}
       >
         <div className={styles.titleContent}>
