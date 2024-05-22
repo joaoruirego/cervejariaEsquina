@@ -243,13 +243,15 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.dirCriacao}>
-            <Image
-              src={criacaoImg2}
-              width={400}
-              height={500}
-              alt="Step"
-              className={styles.criacaoImg2}
-            />
+            <div className={styles.maturacaoImg2Container}>
+              <Image
+                src={criacaoImg2}
+                width={400}
+                height={500}
+                alt="Step"
+                className={styles.criacaoImg2}
+              />
+            </div>
             <Image
               src={maturacao4}
               width={150}

@@ -94,6 +94,7 @@
 .carousel {
   position: relative;
   width: 100%;
+  height: 80vh;
   overflow: hidden; /* Hide non-active slides */
 }
 
@@ -120,7 +121,8 @@
   left: 0;
   right: 0;
   margin: auto;
-  margin-top: -60px;
+  z-index: 100;
+  top: 75vh;
 }
 
 .dot {
@@ -216,6 +218,12 @@
 }
 
 .criacaoImg2 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.maturacaoImg2Container {
   width: 100%;
   height: 500px;
 }
