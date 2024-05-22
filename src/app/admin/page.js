@@ -52,6 +52,7 @@ const AdminPage = () => {
     contacts_hours_en: "",
   });
 
+  const [loading, setLoading] = useState(true); // loading state
   const fileInputRefs = useRef({});
 
   useEffect(() => {
@@ -61,13 +62,14 @@ const AdminPage = () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const data = docSnap.data();
-          // Update content state with fetched data
           setContent(data);
         } else {
           console.log("No such document!");
         }
       } catch (error) {
         console.error("Error fetching content: ", error);
+      } finally {
+        setLoading(false); // Set loading to false after fetching content
       }
     };
 
@@ -107,6 +109,7 @@ const AdminPage = () => {
 
       const docRef = doc(db, "admin", "conteudos");
       await setDoc(docRef, updatedContent);
+      alert("Sucesso");
       console.log("Content updated successfully!");
     } catch (error) {
       console.error("Error updating content: ", error);
@@ -169,6 +172,8 @@ const AdminPage = () => {
       />
     </div>
   );
+
+  if (loading) return <h1>loading</h1>;
 
   return (
     <div>
