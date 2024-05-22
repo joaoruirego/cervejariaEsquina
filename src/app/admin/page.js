@@ -17,6 +17,7 @@ const AdminPage = () => {
     sobre_description_en: "",
     sobre_image1: null,
     sobre_image2: null,
+    sobre_video_link: "",
     criacao_titleImage: null,
     criacao_description_pt: "",
     criacao_description_en: "",
@@ -221,6 +222,9 @@ const AdminPage = () => {
           </div>
           <div className={styles.text}>
             {renderTextInput("sobre_description_en", "Descrição Sobre EN")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("sobre_video_link", "Link para vídeo")}
           </div>
         </div>
       </div>
