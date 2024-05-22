@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Backgroundimage from "next/image";
 import styles from "./page.module.css";
 import { useState, useEffect, useRef } from "react";
 
@@ -47,6 +46,9 @@ import backgroundPaper from "../../public/FOTOS/backgroundPaper.png";
 import riscos from "../../public/FOTOS/3riscos.png";
 import x_icon from "../../public/FOTOS/x_icon.webp";
 
+import "../components/i18nconfig";
+import { useTranslation } from "react-i18next";
+
 const images = [
   "/SLIDER_INICIO/SLIDER_MEAT_LOVERS.jpg",
   "/SLIDER_INICIO/SLIDER_BIFANA.jpg",
@@ -55,12 +57,20 @@ const images = [
 ];
 
 export default function Home() {
+  const { t, i18n } = useTranslation();
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [closeNav, setCloseNav] = useState(false);
   const sobreTitleRef = useRef(null);
   const menuTitleRef = useRef(null);
   const contactosTitleRef = useRef(null);
+  const [currentLanguage, setCurrentLanguage] = useState("pt"); // State to track the current language
 
+  const changeLanguage = (language) => {
+    console.log("changed to " + language);
+    i18n.changeLanguage(language);
+    setCurrentLanguage(language);
+  };
   const scrollToRef = (ref) => {
     window.scrollTo({
       top: ref.current.offsetTop - 25,
@@ -139,7 +149,7 @@ export default function Home() {
                 scrollToRef(sobreTitleRef); // Scroll to the 'Sobre' section
               }}
             >
-              Sobre
+              {t("sobre-nos-title")}
             </li>
             <li
               onClick={() => {
@@ -147,7 +157,7 @@ export default function Home() {
                 scrollToRef(menuTitleRef); // Scroll to the 'Sobre' section
               }}
             >
-              Menu
+              {t("menu-title")}
             </li>
             <li
               onClick={() => {
@@ -155,7 +165,7 @@ export default function Home() {
                 scrollToRef(contactosTitleRef); // Scroll to the 'Sobre' section
               }}
             >
-              Contactos
+              {t("contactos-title")}
             </li>
           </ul>
           <div className={styles.topicosDireita}>
@@ -187,7 +197,19 @@ export default function Home() {
             </div>
             <div className={styles.navBarDireita}>
               <div className={styles.linguas}>
-                <li>PT</li>|<li>EN</li>
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={() => changeLanguage("pt")}
+                >
+                  PT
+                </li>
+                |
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={() => changeLanguage("en")}
+                >
+                  EN
+                </li>
               </div>
               <button
                 onClick={() => {
@@ -196,7 +218,7 @@ export default function Home() {
                 }}
                 className={styles.reservarBtn}
               >
-                Reservar
+                {t("contactos-title")}
               </button>
             </div>
           </div>
@@ -211,9 +233,9 @@ export default function Home() {
           className={styles.logo}
         />
         <ul className={styles.topicosCentrais}>
-          <li onClick={() => scrollToRef(sobreTitleRef)}>Sobre</li>
-          <li onClick={() => scrollToRef(menuTitleRef)}>Menu</li>
-          <li onClick={() => scrollToRef(contactosTitleRef)}>Contactos</li>
+          <li onClick={() => scrollToRef(sobreTitleRef)}>{t("sobre-nos-title")}</li>
+          <li onClick={() => scrollToRef(menuTitleRef)}>{t("menu-title")}</li>
+          <li onClick={() => scrollToRef(contactosTitleRef)}>{t("contactos-title")}</li>
         </ul>
         <div className={styles.topicosDireita}>
           <div className={styles.socialsImgs}>
@@ -244,13 +266,25 @@ export default function Home() {
           </div>
           <div className={styles.navBarDireita}>
             <div className={styles.linguas}>
-              <li>PT</li>|<li>EN</li>
+              <li
+                style={{ cursor: "pointer" }}
+                onClick={() => changeLanguage("pt")}
+              >
+                PT
+              </li>
+              |
+              <li
+                style={{ cursor: "pointer" }}
+                onClick={() => changeLanguage("en")}
+              >
+                EN
+              </li>
             </div>
             <button
               onClick={() => scrollToRef(contactosTitleRef)}
               className={styles.reservarBtn}
             >
-              Reservar
+              {t("contactos-title")}
             </button>
           </div>
         </div>
@@ -302,15 +336,7 @@ export default function Home() {
           />
         </div>
 
-        <p className={styles.desc}>
-          Num espaço mítico da cidade de Ponta Delgada, nasceu um novo conceito
-          de cervejaria. É um lugar que junta famílias, amigos ou parceiros de
-          negócio num ambiente acolhedor e descontraído. Uma casa de refeições
-          que é de todos, para todos e que se orgulha de ser um dos refúgios
-          preferidos, na nossa região, para os verdadeiros apreciadores de boa
-          comida. Deixamos o convite para uma experiência gastronómica singular
-          na ilha de São Miguel.
-        </p>
+        <p className={styles.desc}>{t("sobre-nos-desc")}</p>
         <div className={styles.sobreImgs}>
           <div className={styles.sobreImgContainer}>
             <Image
@@ -367,14 +393,7 @@ export default function Home() {
                 className={styles.criacaoImg1}
               />
             </div>
-            <p>
-              Na nossa pastagem, localizada nos arredores da cidade de Ponta
-              Delgada, em pleno meio rural, é possível contemplar a raça Ramo
-              Grande em todo o seu esplendor. Lá, os animais vivem livremente e
-              sem pressa. São criados e tratados com carinho e bondade, por uma
-              questão de responsabilidade e respeito pelo sustento que
-              proporcionam.
-            </p>
+            <p>{t("criacao-desc1")}</p>
           </div>
           <div className={styles.dirCriacao}>
             <div className={styles.criacaoImg2Container}>
@@ -440,15 +459,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <p className={styles.desc}>
-              Paciência e dedicação são as palavras que melhor definem o nosso
-              processo de maturação de carne. Com recurso a armazenagem e
-              equipamento moderno, mas sem esquecer técnicas tradicionais,
-              deixamos a carne maturar lentamente de forma a intensificar o seu
-              aroma e sabor a cada dia que passa. O resultado final é uma
-              textura suculenta e um perfil de sabor rico, o que eleva a nossa
-              carne para um patamar de qualidade insuperável.
-            </p>
+            <p className={styles.desc}>{t("criacao-desc2")}</p>
           </div>
         </div>
       </div>
@@ -498,12 +509,7 @@ export default function Home() {
           </div>
         </div>
         <p style={{ color: "#000" }} className={styles.desc}>
-          O nível premium é uma exigência que está sempre presente nos cortes
-          que apresentamos aos nossos clientes. São obtidos de bovinos com
-          qualidade superior, que são criados e alimentados com cuidado especial
-          para garantir características como marmoreio, textura e sabor. Dos
-          cortes que disponibilizamos, destacam-se o t-bone, tomahawk,
-          costeleta, ribeye, fraldinha, alcatra e picanha.
+          {t("corte-desc")}
         </p>
       </div>
 
@@ -538,15 +544,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <p className={styles.desc}>
-          Aqui, servem-se petiscos tradicionais, como camarão ou pão de alho,
-          passando pelas divinais bifanas e os tenros pregos que podem ser
-          acompanhados com cerveja açoriana centenária. Mas o destaque vai para
-          a carne maturada de excelência, em particular de origem Ramo Grande,
-          uma raça autóctone dos Açores que se caracteriza por ter uma carne com
-          vermelho vivo, consistência firme, gordura bem distribuída e um aroma
-          típico da espécie.
-        </p>
+        <p className={styles.desc}>{t("menu-desc1")}</p>
         <div className={styles.Imgs}>
           <div className={styles.menuImgContainer4}>
             <Image
@@ -577,15 +575,7 @@ export default function Home() {
               className={styles.menuImg5}
             />
           </div>
-          <p className={styles.desc}>
-            O que seria da boa comida sem o bom vinho? A nossa garrafeira é uma
-            autêntica viagem pelas várias regiões vitivinícolas de Portugal,
-            onde cada garrafa conta uma história de excelência e paixão pelo
-            vinho. É nosso compromisso apresentar néctares com características
-            como sabor diferenciado, aroma distinto, cor viva, acidez
-            equilibrada, taninos bem estruturados, encorpados e persistência
-            prolongada na boca.
-          </p>
+          <p className={styles.desc}>{t("menu-desc2")}</p>
         </div>
         <div className={styles.menuImg6}>
           <div className={styles.menuImgContainer6}>
