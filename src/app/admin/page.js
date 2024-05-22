@@ -4,6 +4,7 @@ import { db, storage } from "@/firebase";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import Image from "next/image";
+import styles from "./admin.module.css";
 
 const AdminPage = () => {
   const [content, setContent] = useState({
@@ -176,70 +177,119 @@ const AdminPage = () => {
   if (loading) return <h1>loading</h1>;
 
   return (
-    <div>
-      <h1>Edição de conteúdos</h1>
-      <div>
-        <h3>Slider</h3>
-        {renderImageInput("slider_image1")}
-        {renderImageInput("slider_image2")}
-        {renderImageInput("slider_image3")}
-        {renderImageInput("slider_image4")}
+    <div className={styles.main}>
+      <header>
+        <h1 className={styles.title}>Edição de conteúdos</h1>
+        <button onClick={() => saveContent()}>Guardar</button>
+      </header>
+      <h3 className={styles.subtitle}>Slider</h3>
+      <p className={styles.desc}>Imagens do Carrossel</p>
+      <div className={styles.images}>
+        <div className={styles.image}>{renderImageInput("slider_image1")}</div>
+        <div className={styles.image}>{renderImageInput("slider_image2")}</div>
+        <div className={styles.image}>{renderImageInput("slider_image3")}</div>
+        <div className={styles.image}>{renderImageInput("slider_image4")}</div>
       </div>
       <div>
-        <h3>Sobre</h3>
-        {renderImageInput("sobre_titleImage")}
+        <h3 className={styles.subtitle}>Sobre</h3>
+
+        <div className={styles.images}>
+          <div className={styles.image}>
+            {renderImageInput("sobre_titleImage")}
+          </div>
+
+          <div className={styles.image}>{renderImageInput("sobre_image1")}</div>
+          <div className={styles.image}>{renderImageInput("sobre_image2")}</div>
+        </div>
         {renderTextInput("sobre_description_pt")}
         {renderTextInput("sobre_description_en")}
-        {renderImageInput("sobre_image1")}
-        {renderImageInput("sobre_image2")}
       </div>
       <div>
-        <h3>Criação</h3>
-        {renderImageInput("criacao_titleImage")}
+        <h3 className={styles.subtitle}>Criação</h3>
+        <div className={styles.images}>
+          <div className={styles.image}>
+            {renderImageInput("criacao_titleImage")}
+          </div>
+
+          <div className={styles.image}>
+            {renderImageInput("criacao_image1")}
+          </div>
+          <div className={styles.image}>
+            {renderImageInput("criacao_image2")}
+          </div>
+        </div>
         {renderTextInput("criacao_description_pt")}
         {renderTextInput("criacao_description_en")}
-        {renderImageInput("criacao_image1")}
-        {renderImageInput("criacao_image2")}
       </div>
       <div>
-        <h3>Maturação</h3>
-        {renderImageInput("maturacao_titleImage")}
+        <h3 className={styles.subtitle}>Maturação</h3>
+        <div className={styles.images}>
+          <div className={styles.image}>
+            {renderImageInput("maturacao_titleImage")}
+          </div>
+
+          <div className={styles.image}>
+            {renderImageInput("maturacao_image1")}
+          </div>
+
+          <div className={styles.image}>
+            {renderImageInput("maturacao_image2")}
+          </div>
+
+          <div className={styles.image}>
+            {renderImageInput("maturacao_image3")}
+          </div>
+        </div>
+
         {renderTextInput("maturacao_description_pt")}
         {renderTextInput("maturacao_description_en")}
-        {renderImageInput("maturacao_image1")}
-        {renderImageInput("maturacao_image2")}
-        {renderImageInput("maturacao_image3")}
       </div>
       <div>
-        <h3>Corte</h3>
-        {renderImageInput("corte_titleImage")}
+        <h3 className={styles.subtitle}>Corte</h3>
+        <div className={styles.images}>
+          <div className={styles.image}>
+            {renderImageInput("corte_titleImage")}
+          </div>
+
+          <div className={styles.image}>{renderImageInput("corte_image1")}</div>
+          <div className={styles.image}>{renderImageInput("corte_image2")}</div>
+          <div className={styles.image}>{renderImageInput("corte_image3")}</div>
+        </div>
+
         {renderTextInput("corte_description_pt")}
         {renderTextInput("corte_description_en")}
-        {renderImageInput("corte_image1")}
-        {renderImageInput("corte_image2")}
-        {renderImageInput("corte_image3")}
       </div>
       <div>
-        <h3>Menu</h3>
-        {renderImageInput("menu_titleImage")}
+        <h3 className={styles.subtitle}>Menu</h3>
+        <div className={styles.images}>
+          <div className={styles.image}>
+            {renderImageInput("menu_titleImage")}
+          </div>
+
+          <div className={styles.image}>{renderImageInput("menu_image1")}</div>
+          <div className={styles.image}>{renderImageInput("menu_image2")}</div>
+          <div className={styles.image}>{renderImageInput("menu_image3")}</div>
+          <div className={styles.image}>{renderImageInput("menu_image4")}</div>
+          <div className={styles.image}>{renderImageInput("menu_image5")}</div>
+          <div className={styles.image}>{renderImageInput("menu_image6")}</div>
+        </div>
+
         {renderTextInput("menu_description_pt")}
         {renderTextInput("menu_description_en")}
-        {renderImageInput("menu_image1")}
-        {renderImageInput("menu_image2")}
-        {renderImageInput("menu_image3")}
-        {renderImageInput("menu_image4")}
-        {renderImageInput("menu_image5")}
-        {renderImageInput("menu_image6")}
       </div>
       <div>
-        <h3>Contacts</h3>
+        <h3 className={styles.subtitle}>Contacts</h3>
+
+        <div className={styles.images}>
+          <div className={styles.image}>
+            {renderImageInput("contacts_hoursImage")}
+          </div>
+        </div>
+        {renderTextInput("contacts_hours")}
         {renderTextInput("contacts_location")}
         {renderTextInput("contacts_phone")}
         {renderTextInput("contacts_email")}
-        {renderImageInput("contacts_hoursImage")}
-        {renderTextInput("contacts_hours")}
       </div>
-      <button onClick={() => saveContent()}>Save</button>
     </div>
   );
 };
