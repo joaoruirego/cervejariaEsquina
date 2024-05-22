@@ -85,6 +85,12 @@ body {
   overflow-x: hidden;
 }
 
+.no-scroll {
+  overflow-y: hidden; /* Isso previne o scroll no body */
+  position: fixed;
+  height: 100vh; /* Isso limita a altura do body ao tamanho da viewport */
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

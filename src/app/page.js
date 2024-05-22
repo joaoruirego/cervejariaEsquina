@@ -44,6 +44,8 @@ import contactosTitle from "../../public/FOTOS/CONTACTOS.png";
 import horarioTitle from "../../public/FOTOS/HORARIO.png";
 
 import backgroundPaper from "../../public/FOTOS/backgroundPaper.png";
+import riscos from "../../public/FOTOS/3riscos.png";
+import x_icon from "../../public/FOTOS/x_icon.webp";
 
 const images = [
   "/SLIDER_INICIO/SLIDER_MEAT_LOVERS.jpg",
@@ -54,6 +56,7 @@ const images = [
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [closeNav, setCloseNav] = useState(false);
   const sobreTitleRef = useRef(null);
   const menuTitleRef = useRef(null);
   const contactosTitleRef = useRef(null);
@@ -73,8 +76,132 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  const handleCloseNav = () => {
+    setCloseNav(!closeNav);
+  };
+
+  useEffect(() => {
+    if (closeNav) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    // Limpeza ao desmontar
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [closeNav]);
+
   return (
     <div className={styles.geral}>
+      <nav className={styles.navTlmFixa}>
+        <button onClick={handleCloseNav} className={styles.closeBtn}>
+          <Image
+            src={riscos}
+            alt="Step"
+            width={35}
+            height={35}
+            className={styles.iconNavTlm}
+          />
+        </button>
+        <Image
+          width={150}
+          height={80}
+          alt="Step"
+          src={logo}
+          className={styles.logo}
+        />
+      </nav>
+
+      {closeNav && (
+        <nav className={styles.navTlm}>
+          <button onClick={handleCloseNav} className={styles.closeBtn}>
+            <Image
+              src={x_icon}
+              alt="Step"
+              width={35}
+              height={35}
+              className={styles.iconNavTlm}
+            />
+          </button>
+          <Image
+            width={150}
+            height={80}
+            alt="Step"
+            src={logo}
+            className={styles.logo}
+          />
+          <ul className={styles.topicosCentrais}>
+            <li
+              onClick={() => {
+                setCloseNav(false); // Close the navigation
+                scrollToRef(sobreTitleRef); // Scroll to the 'Sobre' section
+              }}
+            >
+              Sobre
+            </li>
+            <li
+              onClick={() => {
+                setCloseNav(false); // Close the navigation
+                scrollToRef(menuTitleRef); // Scroll to the 'Sobre' section
+              }}
+            >
+              Menu
+            </li>
+            <li
+              onClick={() => {
+                setCloseNav(false); // Close the navigation
+                scrollToRef(contactosTitleRef); // Scroll to the 'Sobre' section
+              }}
+            >
+              Contactos
+            </li>
+          </ul>
+          <div className={styles.topicosDireita}>
+            <div className={styles.socialsImgs}>
+              <a
+                target="_blank"
+                href="https://www.facebook.com/cervejariaesquina"
+              >
+                <Image
+                  src={facebookWhite}
+                  width={35}
+                  height={35}
+                  alt="Step"
+                  className={styles.socialImg}
+                />
+              </a>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/cervejariaesquina"
+              >
+                <Image
+                  src={instaWhite}
+                  width={35}
+                  height={35}
+                  alt="Step"
+                  className={styles.socialImg}
+                />
+              </a>
+            </div>
+            <div className={styles.navBarDireita}>
+              <div className={styles.linguas}>
+                <li>PT</li>|<li>EN</li>
+              </div>
+              <button
+                onClick={() => {
+                  setCloseNav(false); // Close the navigation
+                  scrollToRef(contactosTitleRef); // Scroll to the 'Sobre' section
+                }}
+                className={styles.reservarBtn}
+              >
+                Reservar
+              </button>
+            </div>
+          </div>
+        </nav>
+      )}
       <nav className={styles.navBar}>
         <Image
           width={150}
@@ -145,6 +272,7 @@ export default function Home() {
                   width={2000} // Adjust to fit the container size
                   height={2000} // Adjust to maintain aspect ratio
                   layout="responsive" // This makes the image responsive
+                  className={styles.carrouselImage}
                 />
               </div>
             ))}
@@ -184,20 +312,24 @@ export default function Home() {
           na ilha de São Miguel.
         </p>
         <div className={styles.sobreImgs}>
-          <Image
-            src={sobreImg1}
-            width={300}
-            height={300}
-            alt="Step"
-            className={styles.sobreImg1}
-          />
-          <Image
-            src={sobreImg2}
-            width={600}
-            height={300}
-            alt="Step"
-            className={styles.sobreImg2}
-          />
+          <div className={styles.sobreImgContainer}>
+            <Image
+              src={sobreImg1}
+              width={300}
+              height={300}
+              alt="Step"
+              className={styles.sobreImg1}
+            />
+          </div>
+          <div className={styles.sobreImgContainer2}>
+            <Image
+              src={sobreImg2}
+              width={600}
+              height={300}
+              alt="Step"
+              className={styles.sobreImg2}
+            />
+          </div>
         </div>
         <a href="" target="_blank">
           <div className={styles.sobreVideo}>
@@ -226,13 +358,15 @@ export default function Home() {
 
         <div className={styles.criacaoContainer}>
           <div className={styles.esqCriacao}>
-            <Image
-              src={criacaoImg1}
-              width={400}
-              height={300}
-              alt="Step"
-              className={styles.criacaoImg1}
-            />
+            <div className={styles.criacaoImg1Container}>
+              <Image
+                src={criacaoImg1}
+                width={400}
+                height={300}
+                alt="Step"
+                className={styles.criacaoImg1}
+              />
+            </div>
             <p>
               Na nossa pastagem, localizada nos arredores da cidade de Ponta
               Delgada, em pleno meio rural, é possível contemplar a raça Ramo
@@ -243,7 +377,7 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.dirCriacao}>
-            <div className={styles.maturacaoImg2Container}>
+            <div className={styles.criacaoImg2Container}>
               <Image
                 src={criacaoImg2}
                 width={400}
@@ -275,30 +409,36 @@ export default function Home() {
         </div>
         <div className={styles.maturacaoContainer}>
           <div className={styles.maturacaoEsq}>
-            <Image
-              src={maturacao1}
-              width={300}
-              height={400}
-              alt="Step"
-              className={styles.maturacaoImg1}
-            />
+            <div className={styles.maturacaoImgContainer1}>
+              <Image
+                src={maturacao1}
+                width={300}
+                height={400}
+                alt="Step"
+                className={styles.maturacaoImg1}
+              />
+            </div>
           </div>
           <div className={styles.maturacaoDireita}>
             <div className={styles.maturacaoImgs}>
-              <Image
-                src={maturacao3}
-                width={150}
-                height={150}
-                alt="Step"
-                className={styles.maturacaoImg2}
-              />
-              <Image
-                src={maturacao2}
-                width={150}
-                height={150}
-                alt="Step"
-                className={styles.maturacaoImg3}
-              />
+              <div className={styles.maturacaoImgContainer}>
+                <Image
+                  src={maturacao3}
+                  width={150}
+                  height={150}
+                  alt="Step"
+                  className={styles.maturacaoImg2}
+                />
+              </div>
+              <div className={styles.maturacaoImgContainer}>
+                <Image
+                  src={maturacao2}
+                  width={150}
+                  height={150}
+                  alt="Step"
+                  className={styles.maturacaoImg3}
+                />
+              </div>
             </div>
             <p className={styles.desc}>
               Paciência e dedicação são as palavras que melhor definem o nosso
@@ -329,27 +469,33 @@ export default function Home() {
           />
         </div>
         <div className={styles.cortesImgs}>
-          <Image
-            src={cortesImg1}
-            width={450}
-            height={300}
-            alt="Step"
-            className={styles.corteImg1}
-          />
-          <Image
-            src={cortesImg2}
-            width={250}
-            height={300}
-            alt="Step"
-            className={styles.corteImg2}
-          />
-          <Image
-            src={cortesImg3}
-            width={250}
-            height={300}
-            alt="Step"
-            className={styles.corteImg3}
-          />
+          <div className={styles.cortesImgContainer1}>
+            <Image
+              src={cortesImg1}
+              width={450}
+              height={300}
+              alt="Step"
+              className={styles.corteImg1}
+            />
+          </div>
+          <div className={styles.cortesImgContainer}>
+            <Image
+              src={cortesImg2}
+              width={250}
+              height={300}
+              alt="Step"
+              className={styles.corteImg2}
+            />
+          </div>
+          <div className={styles.cortesImgContainer}>
+            <Image
+              src={cortesImg3}
+              width={250}
+              height={300}
+              alt="Step"
+              className={styles.corteImg3}
+            />
+          </div>
         </div>
         <p style={{ color: "#000" }} className={styles.desc}>
           O nível premium é uma exigência que está sempre presente nos cortes
@@ -373,20 +519,24 @@ export default function Home() {
         </div>
 
         <div className={styles.Imgs}>
-          <Image
-            src={menuImg1}
-            width={350}
-            height={200}
-            alt="Step"
-            className={styles.menuImg1}
-          />
-          <Image
-            src={menuImg2}
-            width={350}
-            height={200}
-            alt="Step"
-            className={styles.menuImg2}
-          />
+          <div className={styles.menuImgContainer}>
+            <Image
+              src={menuImg1}
+              width={350}
+              height={200}
+              alt="Step"
+              className={styles.menuImg1}
+            />
+          </div>
+          <div className={styles.menuImgContainer}>
+            <Image
+              src={menuImg2}
+              width={350}
+              height={200}
+              alt="Step"
+              className={styles.menuImg2}
+            />
+          </div>
         </div>
         <p className={styles.desc}>
           Aqui, servem-se petiscos tradicionais, como camarão ou pão de alho,
@@ -398,29 +548,35 @@ export default function Home() {
           típico da espécie.
         </p>
         <div className={styles.Imgs}>
-          <Image
-            src={menuImg3}
-            width={350}
-            height={200}
-            alt="Step"
-            className={styles.menuImg3}
-          />
-          <Image
-            src={menuImg4}
-            width={350}
-            height={200}
-            alt="Step"
-            className={styles.menuImg4}
-          />
+          <div className={styles.menuImgContainer4}>
+            <Image
+              src={menuImg3}
+              width={350}
+              height={200}
+              alt="Step"
+              className={styles.menuImg3}
+            />
+          </div>
+          <div className={styles.menuImgContainer4}>
+            <Image
+              src={menuImg4}
+              width={350}
+              height={200}
+              alt="Step"
+              className={styles.menuImg4}
+            />
+          </div>
         </div>
         <div className={styles.Imgs}>
-          <Image
-            src={menuImg5}
-            width={350}
-            height={350}
-            alt="Step"
-            className={styles.menuImg5}
-          />
+          <div className={styles.menuImgContainer5}>
+            <Image
+              src={menuImg5}
+              width={350}
+              height={350}
+              alt="Step"
+              className={styles.menuImg5}
+            />
+          </div>
           <p className={styles.desc}>
             O que seria da boa comida sem o bom vinho? A nossa garrafeira é uma
             autêntica viagem pelas várias regiões vitivinícolas de Portugal,
@@ -432,13 +588,15 @@ export default function Home() {
           </p>
         </div>
         <div className={styles.menuImg6}>
-          <Image
-            src={menuImg6}
-            width={700}
-            height={350}
-            alt="Step"
-            className={styles.menuImg6}
-          />
+          <div className={styles.menuImgContainer6}>
+            <Image
+              src={menuImg6}
+              width={700}
+              height={350}
+              alt="Step"
+              className={styles.menuImg6}
+            />
+          </div>
         </div>
       </div>
 
@@ -455,8 +613,7 @@ export default function Home() {
             width={140}
             height={70}
             src={contactosTitle}
-            className={styles.title}
-            style={{ width: 180, height: 80, display: "block", margin: "auto" }}
+            className={styles.titleContactos}
           />
         </div>
 

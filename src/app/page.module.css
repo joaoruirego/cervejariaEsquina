@@ -25,10 +25,15 @@
   background-color: #000;
   display: flex;
   justify-content: space-between;
-  padding-top: 15px;
+  padding-top: 25px;
   padding-bottom: 15px;
   padding-left: 400px;
   padding-right: 400px;
+}
+
+.navTlm,
+.navTlmFixa {
+  display: none;
 }
 
 .logo {
@@ -94,14 +99,19 @@
 .carousel {
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 70vh;
   overflow: hidden; /* Hide non-active slides */
 }
 
 .carouselInner {
   display: flex;
   width: 100%;
-  transition: transform 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  height: 70vh;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(#000, #222, #000);
 }
 
 .carouselItem {
@@ -117,12 +127,14 @@
 .carouselDots {
   display: flex;
   justify-content: center;
+  z-index: 100;
   position: absolute;
+  z-index: 100;
   left: 0;
   right: 0;
   margin: auto;
-  z-index: 100;
-  top: 75vh;
+  top: auto;
+  bottom: 25px;
 }
 
 .dot {
@@ -155,6 +167,12 @@
   object-fit: contain;
 }
 
+.titleContactos {
+  width: 100%;
+  object-fit: contain;
+  scale: 0.8;
+}
+
 .titleContent {
   align-self: center;
   display: block;
@@ -175,16 +193,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 25px;
 }
 
-.sobreImg1 {
+.sobreImgContainer {
+  flex: 30%;
   width: 320px;
   height: 320px;
 }
 
-.sobreImg2 {
+.sobreImgContainer2 {
   width: 650px;
   height: 320px;
+  flex: 70%;
+}
+
+.sobreImg1,
+.sobreImg2 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .sobreVideo {
@@ -212,18 +240,19 @@
   flex: 50%;
 }
 
+.criacaoImg2,
 .criacaoImg1 {
-  width: 100%;
-  height: 320px;
-}
-
-.criacaoImg2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.maturacaoImg2Container {
+.criacaoImg1Container {
+  width: 100%;
+  height: 320px;
+}
+
+.criacaoImg2Container {
   width: 100%;
   height: 500px;
 }
@@ -265,15 +294,27 @@
   align-items: center;
 }
 
-.maturacaoImg1 {
-  width: auto;
+.maturacaoImgContainer1 {
+  width: 100%;
   height: 550px;
+}
+
+.maturacaoImg1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.maturacaoImgContainer {
+  width: 100%;
+  height: 340px;
 }
 
 .maturacaoImg2,
 .maturacaoImg3 {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .maturacaoImg4 {
@@ -289,51 +330,78 @@
 .cortesImgs {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 25px;
   margin-top: 35px;
   margin-bottom: 35px;
+  flex: 100%;
 }
 
-.corteImg1 {
+.cortesImgContainer1 {
   width: 450px;
   height: 300px;
+  flex: 67%;
 }
 
+.corteImg1,
 .corteImg2,
 .corteImg3 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cortesImgContainer {
   width: 250px;
   height: 300px;
+  flex: 33%;
 }
 
 /* MENU */
 .Imgs {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-top: 25px;
   margin-bottom: 45px;
+  flex: 100%;
+  gap: 25px;
+}
+
+.menuImgContainer {
+  width: 100%;
+  height: 350px;
+  flex: 50%;
 }
 
 .menuImg1,
-.menuImg2 {
-  width: auto;
-  height: 350px;
-}
-
+.menuImg2,
 .menuImg3,
-.menuImg4 {
-  height: 400px;
-  width: auto;
+.menuImg4,
+.menuImg5 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.menuImg5 {
-  height: 350px;
-  width: auto;
+.menuImgContainer4 {
+  width: 100%;
+  height: 400px;
+  flex: 50%;
+}
+
+.menuImgContainer5 {
+  width: 100%;
+  height: 400px;
+}
+
+.menuImgContainer6 {
+  width: 100%;
+  height: 450px;
 }
 
 .menuImg6 {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* CONTACTOS */
@@ -395,4 +463,359 @@
   font-size: 32px;
   text-align: center;
   color: #000;
+}
+
+@media only screen and (max-width: 1400px) {
+  .sobreNos,
+  .maturacao,
+  .menu,
+  .horario {
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+
+  .criacao,
+  .corte,
+  .contactos,
+  .politica,
+  .navBar {
+    padding-left: 300px;
+    padding-right: 300px;
+  }
+
+  .maturacaoImg4 {
+    right: 250px;
+  }
+}
+
+@media only screen and (max-width: 1450px) {
+  .sobreNos,
+  .maturacao,
+  .menu,
+  .horario {
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+
+  .criacao,
+  .corte,
+  .contactos,
+  .politica,
+  .navBar {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+
+  .maturacaoImg4 {
+    right: 100px;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .sobreNos,
+  .maturacao,
+  .menu,
+  .horario {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .criacao,
+  .corte,
+  .contactos,
+  .politica,
+  .navBar {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .maturacaoImg4 {
+    right: 25px;
+  }
+
+  .carouselDots {
+    bottom: 45px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .navBar {
+    display: none;
+  }
+
+  .navTlm {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-direction: column;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: #000000cc;
+    backdrop-filter: blur(5px);
+    gap: 25px;
+    justify-content: space-between;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .navTlmFixa {
+    display: block;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: linear-gradient(#000 80%, transparent);
+    overflow: hidden;
+    gap: 25px;
+    justify-content: space-between;
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+
+  .topicosCentrais {
+    flex-direction: column;
+  }
+
+  .navBarDireita {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-left: 15px;
+  }
+
+  .closeBtn {
+    position: fixed;
+    top: 45px;
+    left: 25px;
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+  }
+
+  .closeBtn:hover {
+    opacity: 0.6;
+  }
+
+  .iconNavTlm {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .logo {
+    width: 100%;
+    height: 45px;
+    object-fit: contain;
+  }
+
+  .carousel {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    overflow: hidden; /* Hide non-active slides */
+  }
+
+  .carouselInner {
+    display: flex;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+    position: absolute;
+    height: 40vh;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .carouselDots {
+    bottom: 25px;
+  }
+
+  .titleContent {
+    width: 105px;
+  }
+
+  .titleContactos {
+    scale: 1.05;
+  }
+
+  .desc {
+    font-family: "Sofia Sans Extra Condensed";
+    font-size: 20px;
+    margin: 15px 15px 35px 15px;
+    text-align: center;
+    color: #eee;
+  }
+  .esqCriacao p {
+    font-size: 18px;
+  }
+
+  .horarioText,
+  .politicaText1,
+  .politicaText2 {
+    font-size: 30px;
+  }
+
+  .Imgs {
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+
+  .sobreImgs {
+    flex-direction: column-reverse;
+  }
+
+  .sobreImgContainer {
+    flex: 50%;
+    width: 100%;
+    height: 320px;
+  }
+
+  .sobreImgContainer2 {
+    width: 100%;
+    height: 320px;
+    flex: 50%;
+  }
+
+  .maturacaoContainer {
+    flex-direction: column-reverse;
+    margin-top: 25px;
+  }
+
+  .maturacaoImgContainer1 {
+    width: 100%;
+    height: 250px;
+    flex: 100%;
+  }
+
+  .maturacaoEsq {
+    flex: 0%;
+    align-self: center;
+  }
+
+  .cortesImgs {
+    flex-direction: column;
+  }
+
+  .cortesImgContainer1 {
+    width: 100%;
+    height: 250px;
+    flex: 67%;
+  }
+
+  .corteImg1,
+  .corteImg2,
+  .corteImg3 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cortesImgContainer {
+    width: 100%;
+    height: 250px;
+    flex: 33%;
+  }
+
+  .contactosMain {
+    flex-direction: column;
+  }
+
+  .contactosContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .sobreNos,
+  .maturacao,
+  .menu,
+  .horario {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+
+  .criacao,
+  .corte,
+  .contactos,
+  .politica,
+  .navBar {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .maturacaoImg4 {
+    right: 12.5px;
+  }
+
+  .carousel {
+    position: relative;
+    width: auto;
+    height: 80vh;
+    overflow: hidden; /* Hide non-active slides */
+  }
+
+  .carouselInner {
+    display: flex;
+    width: auto;
+    transition: all 0.5s ease-in-out;
+    position: absolute;
+    height: 80vh;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .carouselItem {
+    display: none;
+    width: 100%;
+    height: 80vh;
+  }
+
+  .carrouselImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carouselItemActive {
+    display: flex;
+  }
+
+  .contactosContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .criacaoContainer {
+    flex-direction: column;
+  }
+
+  .dirCriacao {
+    width: 100%;
+    margin-top: 25px;
+  }
+
+  .horarioText,
+  .politicaText1,
+  .politicaText2 {
+    font-size: 24px;
+  }
 }
