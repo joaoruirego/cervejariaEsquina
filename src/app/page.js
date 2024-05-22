@@ -449,20 +449,30 @@ export default function Home() {
               </p>
             </div>
             <div className={styles.socialsImgs}>
-              <Image
-                src={facebook}
-                width={45}
-                height={45}
-                alt="Step"
-                className={styles.socialImg}
-              />
-              <Image
-                src={insta}
-                width={45}
-                height={45}
-                alt="Step"
-                className={styles.socialImg}
-              />
+              <a
+                target="_blank"
+                href="https://www.facebook.com/cervejariaesquina"
+              >
+                <Image
+                  src={facebook}
+                  width={45}
+                  height={45}
+                  alt="Step"
+                  className={styles.socialImg}
+                />
+              </a>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/cervejariaesquina"
+              >
+                <Image
+                  src={insta}
+                  width={45}
+                  height={45}
+                  alt="Step"
+                  className={styles.socialImg}
+                />
+              </a>
             </div>
           </div>
           <div className={styles.iframe}>
