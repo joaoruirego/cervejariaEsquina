@@ -157,15 +157,15 @@ const AdminPage = () => {
             />
           )
         ) : (
-          <button>Upload Image</button>
+          <button className={styles.uploadImgBtn}>Upload Image</button>
         )}
       </div>
     </div>
   );
 
-  const renderTextInput = (key) => (
+  const renderTextInput = (key, desc) => (
     <div key={key}>
-      <label>{key}</label>
+      <label>{desc}</label>
       <input
         type="text"
         value={content[key]}
@@ -182,16 +182,27 @@ const AdminPage = () => {
         <h1 className={styles.title}>Edição de conteúdos</h1>
         <button onClick={() => saveContent()}>Guardar</button>
       </header>
-      <h3 className={styles.subtitle}>Slider</h3>
-      <p className={styles.desc}>Imagens do Carrossel</p>
-      <div className={styles.images}>
-        <div className={styles.image}>{renderImageInput("slider_image1")}</div>
-        <div className={styles.image}>{renderImageInput("slider_image2")}</div>
-        <div className={styles.image}>{renderImageInput("slider_image3")}</div>
-        <div className={styles.image}>{renderImageInput("slider_image4")}</div>
+      <div className={styles.bgDif}>
+        <h3 className={styles.subtitle}>Slider</h3>
+        <p className={styles.desc}>Imagens do Carrossel</p>
+        <div className={styles.images}>
+          <div className={styles.image}>
+            {renderImageInput("slider_image1")}
+          </div>
+          <div className={styles.image}>
+            {renderImageInput("slider_image2")}
+          </div>
+          <div className={styles.image}>
+            {renderImageInput("slider_image3")}
+          </div>
+          <div className={styles.image}>
+            {renderImageInput("slider_image4")}
+          </div>
+        </div>
       </div>
-      <div>
+      <div className={styles.bgDif}>
         <h3 className={styles.subtitle}>Sobre</h3>
+        <p className={styles.desc}>Imagens de "Sobre"</p>
 
         <div className={styles.images}>
           <div className={styles.image}>
@@ -201,11 +212,23 @@ const AdminPage = () => {
           <div className={styles.image}>{renderImageInput("sobre_image1")}</div>
           <div className={styles.image}>{renderImageInput("sobre_image2")}</div>
         </div>
-        {renderTextInput("sobre_description_pt")}
-        {renderTextInput("sobre_description_en")}
+        <br></br>
+        <br></br>
+        <p className={styles.desc}>Textos de "Sobre"</p>
+        <div className={styles.texts}>
+          <div className={styles.text}>
+            {renderTextInput("sobre_description_pt", "Descrição Sobre PT")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("sobre_description_en", "Descrição Sobre EN")}
+          </div>
+        </div>
       </div>
-      <div>
+
+      <div className={styles.bgDif}>
         <h3 className={styles.subtitle}>Criação</h3>
+        <p className={styles.desc}>Imagens de "Criação"</p>
+
         <div className={styles.images}>
           <div className={styles.image}>
             {renderImageInput("criacao_titleImage")}
@@ -218,11 +241,24 @@ const AdminPage = () => {
             {renderImageInput("criacao_image2")}
           </div>
         </div>
-        {renderTextInput("criacao_description_pt")}
-        {renderTextInput("criacao_description_en")}
+        <br></br>
+        <br></br>
+        <p className={styles.desc}>Textos de "Criação"</p>
+        <div className={styles.texts}>
+          <div className={styles.text}>
+            {renderTextInput("criacao_description_pt", "Descrição Criação PT")}
+          </div>
+          <div className={styles.text}>
+            {" "}
+            {renderTextInput("criacao_description_en", "Descrição Criação EN")}
+          </div>
+        </div>
       </div>
-      <div>
+
+      <div className={styles.bgDif}>
         <h3 className={styles.subtitle}>Maturação</h3>
+        <p className={styles.desc}>Imagens de "Maturação"</p>
+
         <div className={styles.images}>
           <div className={styles.image}>
             {renderImageInput("maturacao_titleImage")}
@@ -240,12 +276,22 @@ const AdminPage = () => {
             {renderImageInput("maturacao_image3")}
           </div>
         </div>
-
-        {renderTextInput("maturacao_description_pt")}
-        {renderTextInput("maturacao_description_en")}
+        <br></br>
+        <br></br>
+        <p className={styles.desc}>Textos de "Sobre"</p>
+        <div className={styles.texts}>
+          <div className={styles.text}>
+            {renderTextInput("maturacao_description_pt", "Descrição Sobre PT")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("maturacao_description_en", "Descrição Sobre EN")}
+          </div>
+        </div>
       </div>
       <div>
         <h3 className={styles.subtitle}>Corte</h3>
+        <p className={styles.desc}>Imagens de "Corte"</p>
+
         <div className={styles.images}>
           <div className={styles.image}>
             {renderImageInput("corte_titleImage")}
@@ -255,12 +301,23 @@ const AdminPage = () => {
           <div className={styles.image}>{renderImageInput("corte_image2")}</div>
           <div className={styles.image}>{renderImageInput("corte_image3")}</div>
         </div>
-
-        {renderTextInput("corte_description_pt")}
-        {renderTextInput("corte_description_en")}
+        <br></br>
+        <br></br>
+        <p className={styles.desc}>Textos de "Corte"</p>
+        <div className={styles.texts}>
+          <div className={styles.text}>
+            {renderTextInput("corte_description_pt", "Descrição Corte PT")}
+          </div>
+          <div className={styles.text}>
+            {" "}
+            {renderTextInput("corte_description_en", "Descrição Corte EN")}
+          </div>
+        </div>
       </div>
-      <div>
+      <div className={styles.bgDif}>
         <h3 className={styles.subtitle}>Menu</h3>
+        <p className={styles.desc}>Imagens de "Menu"</p>
+
         <div className={styles.images}>
           <div className={styles.image}>
             {renderImageInput("menu_titleImage")}
@@ -274,21 +331,48 @@ const AdminPage = () => {
           <div className={styles.image}>{renderImageInput("menu_image6")}</div>
         </div>
 
-        {renderTextInput("menu_description_pt")}
-        {renderTextInput("menu_description_en")}
+        <br></br>
+        <br></br>
+        <p className={styles.desc}>Textos de "Menu"</p>
+
+        <div className={styles.texts}>
+          <div className={styles.text}>
+            {renderTextInput("menu_description_pt", "Descrição Menu PT")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("menu_description_en", "Descrição Menu EN")}
+          </div>
+        </div>
       </div>
       <div>
-        <h3 className={styles.subtitle}>Contacts</h3>
+        <h3 className={styles.subtitle}>Contactos</h3>
+        <p className={styles.desc}>Imagens de "Contactos"</p>
 
         <div className={styles.images}>
           <div className={styles.image}>
             {renderImageInput("contacts_hoursImage")}
           </div>
         </div>
-        {renderTextInput("contacts_hours")}
-        {renderTextInput("contacts_location")}
-        {renderTextInput("contacts_phone")}
-        {renderTextInput("contacts_email")}
+        <br></br>
+        <br></br>
+        <p className={styles.desc}>Textos de "Contactos"</p>
+
+        <div className={styles.texts}>
+          <div className={styles.text}>
+            {renderTextInput("contacts_hours", "Horário")}
+          </div>
+          <div className={styles.text}>
+            {" "}
+            {renderTextInput("contacts_location", "Localização")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("contacts_phone", "Telemóvel")}
+          </div>
+          <div className={styles.text}>
+            {" "}
+            {renderTextInput("contacts_email", "Email")}
+          </div>
+        </div>
       </div>
     </div>
   );

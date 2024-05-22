@@ -38,6 +38,11 @@
   width: 130px;
 }
 
+.bgDif {
+  border-bottom: 1px solid #333;
+  padding-bottom: 40px;
+}
+
 .title {
   font-size: 52px;
   letter-spacing: -1.2px;
@@ -94,5 +99,105 @@
   object-fit: contain;
 }
 
+.texts {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 100%;
+}
+
 .text {
+  font-family: "Sofia Sans Extra Condensed";
+  font-size: 22px;
+  letter-spacing: 0.6px;
+  color: #8c8c8c;
+  margin-top: 15px;
+}
+
+.text input {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 10px;
+  border: 0;
+  font-size: 22px;
+  letter-spacing: -0.6px;
+  color: #fff;
+  font-family: "Sofia Sans Extra Condensed";
+  outline: none;
+  border: 1px solid #333;
+  background-color: #222;
+}
+
+.uploadImgBtn {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  font-size: 26px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 5px;
+  font-family: "Sofia Sans Extra Condensed";
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: #eee;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #333;
+}
+
+@media only screen and (max-width: 1300px) {
+  .main {
+    background-color: #111;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 55px;
+    padding-bottom: 55px;
+    overflow-y: auto;
+  }
+
+  .texts {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    margin-top: 25px;
+  }
+
+  .images {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    margin-top: 25px;
+  }
+
+  .image {
+    flex: 0 0 auto; /* Ensures the divs don't stretch and only take up necessary width */
+    width: 200px;
+    height: 200px;
+    padding: 15px;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #222;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    scroll-snap-align: start; /* Aligns the snapping points at the start edge of the container */
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .main {
+    background-color: #111;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 55px;
+    padding-bottom: 55px;
+    overflow-y: auto;
+  }
 }
