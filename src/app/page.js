@@ -4,73 +4,25 @@ import styles from "./page.module.css";
 import { useState, useEffect, useRef } from "react";
 
 import logo from "../../public/logoCervejaria.png";
-import fotoGrande from "../../public/SLIDER_INICIO/SLIDER_MEAT_LOVERS.jpg";
-
-import sobreImg1 from "../../public/FOTOS/SOBRE_1.jpg";
-import sobreImg2 from "../../public/FOTOS/SOBRE_2.jpg";
-
-import criacaoImg1 from "../../public/FOTOS/CRIACAO_1.jpg";
-import criacaoImg2 from "../../public/FOTOS/CRIACAO_2.jpg";
-
-import maturacao1 from "../../public/FOTOS/MATURACAO_1.jpg";
-import maturacao2 from "../../public/FOTOS/MATURACAO_2.jpg";
-import maturacao3 from "../../public/FOTOS/MATURACAO_3.jpg";
-import maturacao4 from "../../public/FOTOS/SELO_RAMO_GRANDE.png";
-
-import cortesImg1 from "../../public/FOTOS/CORTE_1.jpg";
-import cortesImg2 from "../../public/FOTOS/CORTE_2.jpg";
-import cortesImg3 from "../../public/FOTOS/CORTE_3.jpg";
-
-import menuImg1 from "../../public/FOTOS/MENU_1.jpg";
-import menuImg2 from "../../public/FOTOS/MENU_2.jpg";
-import menuImg3 from "../../public/FOTOS/MENU_3.jpg";
-import menuImg4 from "../../public/FOTOS/MENU_4.jpg";
-import menuImg5 from "../../public/FOTOS/MENU_5.jpg";
-import menuImg6 from "../../public/FOTOS/MENU_6.jpg";
-
 import facebook from "../../public/FOTOS/facebook_preto.png";
 import insta from "../../public/FOTOS/instagram_preto.png";
-
 import facebookWhite from "../../public/FOTOS/facebook_branco.png";
 import instaWhite from "../../public/FOTOS/instaWhite.webp";
-
-import sobreTitle from "../../public/FOTOS/SOBRE.png";
-import criacaoTitle from "../../public/FOTOS/CRIACAO.png";
-import maturacaoTitle from "../../public/FOTOS/MATURACAO.png";
-import corteTitle from "../../public/FOTOS/CORTE.png";
-import menuTitle from "../../public/FOTOS/MENU.png";
-import contactosTitle from "../../public/FOTOS/CONTACTOS.png";
-import horarioTitle from "../../public/FOTOS/HORARIO.png";
-
 import backgroundPaper from "../../public/FOTOS/backgroundPaper.png";
 import riscos from "../../public/FOTOS/3riscos.png";
 import x_icon from "../../public/FOTOS/x_icon.webp";
 
-import "../components/i18nconfig";
-import { useTranslation } from "react-i18next";
-
-const images = [
-  "/SLIDER_INICIO/SLIDER_MEAT_LOVERS.jpg",
-  "/SLIDER_INICIO/SLIDER_BIFANA.jpg",
-  "/SLIDER_INICIO/SLIDER_CARNE.jpg",
-  "/SLIDER_INICIO/SLIDER_PREGO.jpg",
-];
+import { useLanguage } from "@/context/ContentContext";
 
 export default function Home() {
-  const { t, i18n } = useTranslation();
+  const { setLanguage, isLoading, content, sliderImages } = useLanguage();
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [closeNav, setCloseNav] = useState(false);
   const sobreTitleRef = useRef(null);
   const menuTitleRef = useRef(null);
   const contactosTitleRef = useRef(null);
-  const [currentLanguage, setCurrentLanguage] = useState("pt"); // State to track the current language
 
-  const changeLanguage = (language) => {
-    console.log("changed to " + language);
-    i18n.changeLanguage(language);
-    setCurrentLanguage(language);
-  };
   const scrollToRef = (ref) => {
     window.scrollTo({
       top: ref.current.offsetTop - 25,
@@ -80,11 +32,11 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % sliderImages.length);
+    }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [sliderImages]);
 
   const handleCloseNav = () => {
     setCloseNav(!closeNav);
@@ -97,11 +49,14 @@ export default function Home() {
       document.body.classList.remove("no-scroll");
     }
 
-    // Limpeza ao desmontar
     return () => {
       document.body.classList.remove("no-scroll");
     };
   }, [closeNav]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.geral}>
@@ -149,31 +104,29 @@ export default function Home() {
                 scrollToRef(sobreTitleRef); // Scroll to the 'Sobre' section
               }}
             >
-              {t("sobre-nos-title")}
+              {content.sobreNosTitle}
             </li>
             <li
               onClick={() => {
-                setCloseNav(false); // Close the navigation
-                scrollToRef(menuTitleRef); // Scroll to the 'Sobre' section
+                setCloseNav(false);
+                scrollToRef(menuTitleRef);
               }}
             >
-              {t("menu-title")}
+              sddsd
+              {content.menuTitle}
             </li>
             <li
               onClick={() => {
-                setCloseNav(false); // Close the navigation
-                scrollToRef(contactosTitleRef); // Scroll to the 'Sobre' section
+                setCloseNav(false);
+                scrollToRef(contactosTitleRef);
               }}
             >
-              {t("contactos-title")}
+              {content.contactosTitle}
             </li>
           </ul>
           <div className={styles.topicosDireita}>
             <div className={styles.socialsImgs}>
-              <a
-                target="_blank"
-                href="https://www.facebook.com/cervejariaesquina"
-              >
+              <a target="_blank" href={content.contacts_facebook}>
                 <Image
                   src={facebookWhite}
                   width={35}
@@ -182,10 +135,7 @@ export default function Home() {
                   className={styles.socialImg}
                 />
               </a>
-              <a
-                target="_blank"
-                href="https://www.instagram.com/cervejariaesquina"
-              >
+              <a target="_blank" href={content.contacts_insta}>
                 <Image
                   src={instaWhite}
                   width={35}
@@ -199,14 +149,14 @@ export default function Home() {
               <div className={styles.linguas}>
                 <li
                   style={{ cursor: "pointer" }}
-                  onClick={() => changeLanguage("pt")}
+                  onClick={() => setLanguage("pt")}
                 >
                   PT
                 </li>
                 |
                 <li
                   style={{ cursor: "pointer" }}
-                  onClick={() => changeLanguage("en")}
+                  onClick={() => setLanguage("en")}
                 >
                   EN
                 </li>
@@ -218,7 +168,7 @@ export default function Home() {
                 }}
                 className={styles.reservarBtn}
               >
-                {t("contactos-title")}
+                {content.contactosTitle}
               </button>
             </div>
           </div>
@@ -233,16 +183,17 @@ export default function Home() {
           className={styles.logo}
         />
         <ul className={styles.topicosCentrais}>
-          <li onClick={() => scrollToRef(sobreTitleRef)}>{t("sobre-nos-title")}</li>
-          <li onClick={() => scrollToRef(menuTitleRef)}>{t("menu-title")}</li>
-          <li onClick={() => scrollToRef(contactosTitleRef)}>{t("contactos-title")}</li>
+          <li onClick={() => scrollToRef(sobreTitleRef)}>
+            {content.sobreNosTitle}
+          </li>
+          <li onClick={() => scrollToRef(menuTitleRef)}>{content.menuTitle}</li>
+          <li onClick={() => scrollToRef(contactosTitleRef)}>
+            {content.contactosTitle}
+          </li>
         </ul>
         <div className={styles.topicosDireita}>
           <div className={styles.socialsImgs}>
-            <a
-              target="_blank"
-              href="https://www.facebook.com/cervejariaesquina"
-            >
+            <a target="_blank" href={content.contacts_facebook}>
               <Image
                 src={facebookWhite}
                 width={35}
@@ -251,10 +202,7 @@ export default function Home() {
                 className={styles.socialImg}
               />
             </a>
-            <a
-              target="_blank"
-              href="https://www.facebook.com/cervejariaesquina"
-            >
+            <a target="_blank" href={content.contacts_insta}>
               <Image
                 src={instaWhite}
                 width={35}
@@ -268,14 +216,14 @@ export default function Home() {
             <div className={styles.linguas}>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => changeLanguage("pt")}
+                onClick={() => setLanguage("pt")}
               >
                 PT
               </li>
               |
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => changeLanguage("en")}
+                onClick={() => setLanguage("en")}
               >
                 EN
               </li>
@@ -284,7 +232,7 @@ export default function Home() {
               onClick={() => scrollToRef(contactosTitleRef)}
               className={styles.reservarBtn}
             >
-              {t("contactos-title")}
+              {content.contactosTitle}
             </button>
           </div>
         </div>
@@ -293,11 +241,12 @@ export default function Home() {
       <div className={styles.geral}>
         <div className={styles.carousel}>
           <div className={styles.carouselInner}>
-            {images.map((img, index) => (
+            {sliderImages.map((img, index) => (
               <div
                 key={index}
-                className={`${styles.carouselItem} ${index === currentSlide ? styles.carouselItemActive : ""
-                  }`}
+                className={`${styles.carouselItem} ${
+                  index === currentSlide ? styles.carouselItemActive : ""
+                }`}
               >
                 <Image
                   src={img}
@@ -311,11 +260,12 @@ export default function Home() {
             ))}
           </div>
           <div className={styles.carouselDots}>
-            {images.map((_, index) => (
+            {sliderImages.map((_, index) => (
               <span
                 key={index}
-                className={`${styles.dot} ${index === currentSlide ? styles.dotActive : ""
-                  }`}
+                className={`${styles.dot} ${
+                  index === currentSlide ? styles.dotActive : ""
+                }`}
                 onClick={() => setCurrentSlide(index)}
               ></span>
             ))}
@@ -329,16 +279,16 @@ export default function Home() {
             alt="Step"
             width={140}
             height={70}
-            src={sobreTitle}
+            src={content.sobre_titleImage}
             className={styles.title}
           />
         </div>
 
-        <p className={styles.desc}>{t("sobre-nos-desc")}</p>
+        <p className={styles.desc}>{content.sobre_description}</p>
         <div className={styles.sobreImgs}>
           <div className={styles.sobreImgContainer}>
             <Image
-              src={sobreImg1}
+              src={content.sobre_image1}
               width={300}
               height={300}
               alt="Step"
@@ -347,7 +297,7 @@ export default function Home() {
           </div>
           <div className={styles.sobreImgContainer2}>
             <Image
-              src={sobreImg2}
+              src={content.sobre_image2}
               width={600}
               height={300}
               alt="Step"
@@ -355,7 +305,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <a href="" target="_blank">
+        <a href={content.sobre_video_link} target="_blank">
           <div className={styles.sobreVideo}>
             {/* <video autoPlay={false} >
             <source src="/caminho/para/seu/video.mp4" type="video/mp4" />
@@ -375,7 +325,7 @@ export default function Home() {
             alt="Step"
             width={140}
             height={70}
-            src={criacaoTitle}
+            src={content.criacao_titleImage}
             className={styles.title}
           />
         </div>
@@ -384,32 +334,25 @@ export default function Home() {
           <div className={styles.esqCriacao}>
             <div className={styles.criacaoImg1Container}>
               <Image
-                src={criacaoImg1}
+                src={content.criacao_image1}
                 width={400}
                 height={300}
                 alt="Step"
                 className={styles.criacaoImg1}
               />
             </div>
-            <p>{t("criacao-desc1")}</p>
+            <p>{content.criacao_description}</p>
           </div>
           <div className={styles.dirCriacao}>
             <div className={styles.criacaoImg2Container}>
               <Image
-                src={criacaoImg2}
+                src={content.criacao_image2}
                 width={400}
                 height={500}
                 alt="Step"
                 className={styles.criacaoImg2}
               />
             </div>
-            <Image
-              src={maturacao4}
-              width={150}
-              height={150}
-              alt="Step"
-              className={styles.maturacaoImg4}
-            />
           </div>
         </div>
       </div>
@@ -420,7 +363,7 @@ export default function Home() {
             alt="Step"
             width={140}
             height={70}
-            src={maturacaoTitle}
+            src={content.maturacao_titleImage}
             className={styles.title}
           />
         </div>
@@ -428,7 +371,7 @@ export default function Home() {
           <div className={styles.maturacaoEsq}>
             <div className={styles.maturacaoImgContainer1}>
               <Image
-                src={maturacao1}
+                src={content.maturacao_image1}
                 width={300}
                 height={400}
                 alt="Step"
@@ -440,7 +383,7 @@ export default function Home() {
             <div className={styles.maturacaoImgs}>
               <div className={styles.maturacaoImgContainer}>
                 <Image
-                  src={maturacao3}
+                  src={content.maturacao_image2}
                   width={150}
                   height={150}
                   alt="Step"
@@ -449,7 +392,7 @@ export default function Home() {
               </div>
               <div className={styles.maturacaoImgContainer}>
                 <Image
-                  src={maturacao2}
+                  src={content.maturacao_image3}
                   width={150}
                   height={150}
                   alt="Step"
@@ -457,7 +400,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <p className={styles.desc}>{t("criacao-desc2")}</p>
+            <p className={styles.desc}>{content.maturacao_description}</p>
           </div>
         </div>
       </div>
@@ -473,14 +416,14 @@ export default function Home() {
             alt="Step"
             width={140}
             height={70}
-            src={corteTitle}
+            src={content.corte_titleImage}
             className={styles.title}
           />
         </div>
         <div className={styles.cortesImgs}>
           <div className={styles.cortesImgContainer1}>
             <Image
-              src={cortesImg1}
+              src={content.corte_image1}
               width={450}
               height={300}
               alt="Step"
@@ -489,7 +432,7 @@ export default function Home() {
           </div>
           <div className={styles.cortesImgContainer}>
             <Image
-              src={cortesImg2}
+              src={content.corte_image2}
               width={250}
               height={300}
               alt="Step"
@@ -498,7 +441,7 @@ export default function Home() {
           </div>
           <div className={styles.cortesImgContainer}>
             <Image
-              src={cortesImg3}
+              src={content.corte_image3}
               width={250}
               height={300}
               alt="Step"
@@ -507,7 +450,7 @@ export default function Home() {
           </div>
         </div>
         <p style={{ color: "#000" }} className={styles.desc}>
-          {t("corte-desc")}
+          {content.corte_description}
         </p>
       </div>
 
@@ -517,7 +460,7 @@ export default function Home() {
             alt="Step"
             width={140}
             height={70}
-            src={menuTitle}
+            src={content.menu_titleImage}
             className={styles.title}
           />
         </div>
@@ -525,7 +468,7 @@ export default function Home() {
         <div className={styles.Imgs}>
           <div className={styles.menuImgContainer}>
             <Image
-              src={menuImg1}
+              src={content.menu_image1}
               width={350}
               height={200}
               alt="Step"
@@ -534,7 +477,7 @@ export default function Home() {
           </div>
           <div className={styles.menuImgContainer}>
             <Image
-              src={menuImg2}
+              src={content.menu_image2}
               width={350}
               height={200}
               alt="Step"
@@ -542,11 +485,11 @@ export default function Home() {
             />
           </div>
         </div>
-        <p className={styles.desc}>{t("menu-desc1")}</p>
+        <p className={styles.desc}>{content.menu_description}</p>
         <div className={styles.Imgs}>
           <div className={styles.menuImgContainer4}>
             <Image
-              src={menuImg3}
+              src={content.menu_image3}
               width={350}
               height={200}
               alt="Step"
@@ -555,7 +498,7 @@ export default function Home() {
           </div>
           <div className={styles.menuImgContainer4}>
             <Image
-              src={menuImg4}
+              src={content.menu_image4}
               width={350}
               height={200}
               alt="Step"
@@ -566,19 +509,19 @@ export default function Home() {
         <div className={styles.Imgs}>
           <div className={styles.menuImgContainer5}>
             <Image
-              src={menuImg5}
+              src={content.menu_image5}
               width={350}
               height={350}
               alt="Step"
               className={styles.menuImg5}
             />
           </div>
-          <p className={styles.desc}>{t("menu-desc2")}</p>
+          <p className={styles.desc}>{content.menu_description2}</p>
         </div>
         <div className={styles.menuImg6}>
           <div className={styles.menuImgContainer6}>
             <Image
-              src={menuImg6}
+              src={content.menu_image6}
               width={700}
               height={350}
               alt="Step"
@@ -600,7 +543,7 @@ export default function Home() {
             alt="Step"
             width={140}
             height={70}
-            src={contactosTitle}
+            src={content.contacts_image}
             className={styles.titleContactos}
           />
         </div>
@@ -608,22 +551,27 @@ export default function Home() {
         <div className={styles.contactosMain}>
           <div className={styles.contactosContainer}>
             <div className={styles.contactosTexts1}>
-              <p className={styles.contactosText}>{t("contactos-address1")}</p>
-              <p className={styles.contactosText}>{t("contactos-address2")}</p>
-              <p className={styles.contactosText}>{t("contactos-address3")}</p>
+              <p className={styles.contactosText}>
+                {content.contacts_location_street}
+              </p>
+              <p className={styles.contactosText}>
+                {" "}
+                {content.contacts_location_postcode}
+              </p>
+              <p className={styles.contactosText}>
+                {" "}
+                {content.contacts_location_region}
+              </p>
             </div>
             <div className={styles.contactosTexts2}>
-              <p className={styles.contactosText}>{t("contactos-phone")}</p>
+              <p className={styles.contactosText}>{content.contacts_phone}</p>
               <p style={{ fontSize: 18 }} className={styles.contactosText}>
-                {t("contactos-phone-desc")}
+                {content.contactosPhoneDesc}
               </p>
-              <p className={styles.contactosText}>{t("contactos-email")}</p>
+              <p className={styles.contactosText}>{content.contacts_email}</p>
             </div>
             <div className={styles.socialsImgs}>
-              <a
-                target="_blank"
-                href="https://www.facebook.com/cervejariaesquina"
-              >
+              <a target="_blank" href={content.contacts_facebook}>
                 <Image
                   src={facebook}
                   width={45}
@@ -632,10 +580,7 @@ export default function Home() {
                   className={styles.socialImg}
                 />
               </a>
-              <a
-                target="_blank"
-                href="https://www.instagram.com/cervejariaesquina"
-              >
+              <a target="_blank" href={content.contacts_insta}>
                 <Image
                   src={insta}
                   width={45}
@@ -664,14 +609,14 @@ export default function Home() {
             alt="Step"
             width={140}
             height={70}
-            src={horarioTitle}
+            src={content.hours_image}
             className={styles.title}
           />
         </div>
         <br />
-        <p className={styles.horarioText}>{t("horario-weekday")}</p>
-        <p className={styles.horarioText}>{t("horario-weekend")}</p>
-        <p className={styles.horarioText}>{t("horario-sunday")}</p>
+        <p className={styles.horarioText}>{content.hours_1}</p>
+        <p className={styles.horarioText}>{content.hours_2}</p>
+        <p className={styles.horarioText}>{content.hours_3}</p>
       </div>
 
       <div
@@ -680,8 +625,8 @@ export default function Home() {
         }}
         className={styles.politica}
       >
-        <p className={styles.politicaText1}>{t("politica-privacy")}</p>
-        <p className={styles.politicaText2}>{t("politica-rights")}</p>
+        <p className={styles.politicaText1}> {content.politicaPrivacy}</p>
+        <p className={styles.politicaText2}>{content.politicaRights}</p>
       </div>
     </div>
   );

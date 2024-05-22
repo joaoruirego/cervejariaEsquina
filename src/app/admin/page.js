@@ -46,12 +46,21 @@ const AdminPage = () => {
     menu_image4: null,
     menu_image5: null,
     menu_image6: null,
-    contacts_location: "",
+    contacts_image: null,
+    contacts_location_street: "",
+    contacts_location_postcode: "",
+    contacts_location_region: "",
     contacts_phone: "",
     contacts_email: "",
-    contacts_hoursImage: null,
-    contacts_hours_pt: "",
-    contacts_hours_en: "",
+    contacts_facebook: "",
+    contacts_insta: "",
+    hours_image: null,
+    hours_1_pt: "",
+    hours_1_en: "",
+    hours_2_pt: "",
+    hours_2_en: "",
+    hours_3_pt: "",
+    hours_3_en: "",
   });
 
   const [loading, setLoading] = useState(true); // loading state
@@ -341,10 +350,17 @@ const AdminPage = () => {
 
         <div className={styles.texts}>
           <div className={styles.text}>
-            {renderTextInput("menu_description_pt", "Descrição Menu PT")}
+            {renderTextInput("menu_description_pt", "Descrição 1 Menu PT")}
           </div>
           <div className={styles.text}>
-            {renderTextInput("menu_description_en", "Descrição Menu EN")}
+            {renderTextInput("menu_description_en", "Descrição 1 Menu EN")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("menu_description2_pt", "Descrição 2 Menu PT")}
+          </div>
+          <div className={styles.text}>
+            {" "}
+            {renderTextInput("menu_description2_en", "Descrição 2 Menu EN")}
           </div>
         </div>
       </div>
@@ -354,7 +370,7 @@ const AdminPage = () => {
 
         <div className={styles.images}>
           <div className={styles.image}>
-            {renderImageInput("contacts_hoursImage")}
+            {renderImageInput("contacts_image")}
           </div>
         </div>
         <br></br>
@@ -363,11 +379,16 @@ const AdminPage = () => {
 
         <div className={styles.texts}>
           <div className={styles.text}>
-            {renderTextInput("contacts_hours", "Horário")}
+            {renderTextInput("contacts_location_street", "Rua e nº")}
           </div>
           <div className={styles.text}>
-            {" "}
-            {renderTextInput("contacts_location", "Localização")}
+            {renderTextInput(
+              "contacts_location_postcode",
+              "Código Postal e Localidade"
+            )}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("contacts_location_region", "Região")}
           </div>
           <div className={styles.text}>
             {renderTextInput("contacts_phone", "Telemóvel")}
@@ -375,6 +396,46 @@ const AdminPage = () => {
           <div className={styles.text}>
             {" "}
             {renderTextInput("contacts_email", "Email")}
+          </div>
+          <div className={styles.text}>
+            {" "}
+            {renderTextInput("contacts_facebook", "Facebook")}
+          </div>
+          <div className={styles.text}>
+            {" "}
+            {renderTextInput("contacts_insta", "Instagram")}
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 className={styles.subtitle}>Horários</h3>
+        <p className={styles.desc}>Imagens de "Horários"</p>
+
+        <div className={styles.images}>
+          <div className={styles.image}>{renderImageInput("hours_image")}</div>
+        </div>
+        <br></br>
+        <br></br>
+        <p className={styles.desc}>Textos de "Horários"</p>
+
+        <div className={styles.texts}>
+          <div className={styles.text}>
+            {renderTextInput("hours_1_pt", "Horário linha 1 PT")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("hours_1_en", "Horário linha 1 EN")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("hours_2_pt", "Horário linha 2 PT")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("hours_2_en", "Horário linha 2 EN")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("hours_3_pt", "Horário linha 3 PT")}
+          </div>
+          <div className={styles.text}>
+            {renderTextInput("hours_3_en", "Horário linha 3 PT")}
           </div>
         </div>
       </div>
