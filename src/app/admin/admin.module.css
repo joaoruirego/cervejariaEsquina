@@ -21,12 +21,14 @@
   padding-top: 55px;
   padding-bottom: 55px;
   overflow-x: auto;
+  height: 100vh;
 }
 
 .main header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 15px;
 }
 
 .main header button {
@@ -112,14 +114,13 @@
   height: 100%;
   object-fit: contain;
 }
-
 .texts {
   display: flex;
-  align-items: center;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
   gap: 15px;
-  flex: 100%;
+  margin-top: 25px;
 }
-
 .text {
   font-family: "Sofia Sans Extra Condensed";
   font-size: 22px;
@@ -213,5 +214,34 @@
     padding-top: 55px;
     padding-bottom: 55px;
     overflow-y: auto;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .main header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .main header button {
+    width: 120px;
+    background-color: #000;
+    color: #fff;
+    font-size: 26px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 0;
+    border-radius: 5px;
+    font-family: "Sofia Sans Extra Condensed";
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    color: #eee;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #333;
+    margin-top: -5px;
   }
 }
