@@ -3,11 +3,11 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useState, useEffect, useRef } from "react";
 
-import logo from "../../public/logoCervejaria.png";
-import facebook from "../../public/FOTOS/facebook_preto.png";
-import insta from "../../public/FOTOS/instagram_preto.png";
-import facebookWhite from "../../public/FOTOS/facebook_branco.png";
-import instaWhite from "../../public/FOTOS/instaWhite.webp";
+import logo from "../../public/LOGO_ESQUINA.png";
+import facebook from "../../public/facebook_preto.png";
+import insta from "../../public/instagram_preto.png";
+import facebookWhite from "../../public/facebook_branco.png";
+import instaWhite from "../../public/instagram_branco.png";
 import backgroundPaper from "../../public/FOTOS/backgroundPaper.png";
 import riscos from "../../public/FOTOS/3riscos.png";
 import x_icon from "../../public/FOTOS/x_icon.webp";
@@ -214,6 +214,7 @@ export default function Home() {
                 height={35}
                 alt="Step"
                 className={styles.socialImg}
+                style={{ marginLeft: -7 }}
               />
             </a>
           </div>
@@ -630,7 +631,12 @@ export default function Home() {
         }}
         className={styles.politica}
       >
-        <p className={styles.politicaText1}> {content.politicaPrivacy}</p>
+        <p className={styles.politicaText1}>
+          <a target="_blank" href="https://www.livroreclamacoes.pt/Inicio/">
+            {" "}
+            {content.politicaPrivacy}
+          </a>
+        </p>
         <p className={styles.politicaText2}>{content.politicaRights}</p>
       </div>
     </div>
