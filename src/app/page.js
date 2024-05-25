@@ -118,7 +118,6 @@ export default function Home() {
                 scrollToRef(menuTitleRef);
               }}
             >
-              sddsd
               {content.menuTitle}
             </li>
             <li

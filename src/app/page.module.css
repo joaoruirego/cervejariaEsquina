@@ -106,7 +106,7 @@
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 25px;
+  gap: 40px;
   cursor: pointer;
 }
 
@@ -242,7 +242,7 @@
 
 .desc {
   font-family: "Sofia Sans Extra Condensed";
-  font-size: 25px;
+  font-size: 30px;
   margin: 25px 50px 50px 50px;
   text-align: center;
   color: #eee;
@@ -320,7 +320,7 @@
 
 .esqCriacao p {
   font-family: "Sofia Sans Extra Condensed";
-  font-size: 25px;
+  font-size: 30px;
   color: #333;
 }
 
@@ -513,7 +513,7 @@
 
 .horarioText {
   font-family: "Sofia Sans Extra Condensed";
-  font-size: 42px;
+  font-size: 35px;
   text-align: center;
 }
 
@@ -521,9 +521,19 @@
 .politicaText1,
 .politicaText2 {
   font-family: "Sofia Sans Extra Condensed";
-  font-size: 32px;
+  font-size: 22px;
   text-align: center;
   color: #000;
+}
+
+.politicaText2 {
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 1530px) {
+  .topicosCentrais {
+    gap: 25px;
+  }
 }
 
 @media only screen and (max-width: 1400px) {
